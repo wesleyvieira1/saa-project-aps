@@ -16,14 +16,14 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=256)),
-                ('email', models.CharField(max_length=100)),
+                ('email', models.EmailField(max_length=100)),
                 ('cpf', models.CharField(max_length=11)),
                 ('rg', models.CharField(max_length=7)),
                 ('endereco', models.CharField(max_length=100)),
                 ('data_nascimento', models.DateField()),
                 ('data_entrada', models.DateField()),
                 ('turno', models.CharField(max_length=10)),
-                ('senha', models.CharField(max_length=8)),
+                ('senha', models.CharField(max_length=8))
             ],
         ),
     ]
