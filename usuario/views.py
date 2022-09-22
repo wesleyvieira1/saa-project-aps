@@ -21,3 +21,7 @@ class usuarioUpdateView(UpdateView):
     success_url = '/usuarios/'
 
 #Excluir Usuários
+
+class usuarioDeleteView(DeleteView):
+    model = Usuario
+    success_url = '/usuarios/'
