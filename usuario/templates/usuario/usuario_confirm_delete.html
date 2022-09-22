@@ -1,0 +1,5 @@
+<form method="post">
+    {% csrf_token %}
+    <h3>Você quer mesmo deletar o usuário "{{object}}"?</h3>
+    <input type="submit" value="Excluir Usuário"></input>
+</form>
