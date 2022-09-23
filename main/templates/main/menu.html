@@ -1,0 +1,7 @@
+{% if user.is_authenticated %}
+    <a href="{%url 'home'%}">Home</a>
+    <a href="{%url 'usuario.index'%}">Usuários</a>
+    <a href="{%url 'usuario.novo'%}">Novo Usuário</a>
+    <a href="{%url 'logout'%}">Sair</a>
+
+{% endif %}
