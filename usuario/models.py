@@ -1,5 +1,6 @@
 from colorsys import rgb_to_hls
 import email
+from email.policy import default
 from pyexpat import model
 from django.db import models
 
@@ -27,11 +28,10 @@ class Usuario(models.Model):
 		validators=[validateNome]
         )
     #foto = models.ImageField()
-    email = models.EmailField(
+    email = models.CharField(
         max_length=100,
-        blank=True,
-		null=True,
-		unique=True,
+        null=True,
+        unique=True,
 		validators=[validateEmail]
         )
 
@@ -65,13 +65,14 @@ class Usuario(models.Model):
 		unique=True,
 		choices=CHOICES_USUARIO_TURNO
         )
-    #departamento = models.CharField(
-    # max_length=20,
-    # blank=True,
-    # null=True,
-    # unique=True,
-    # choices=CHOICES_USUARIO_DEPARTAMENTO
-    # )
+    departamento = models.CharField(
+        default='',
+        max_length=20,
+        blank=True,
+        null=True,
+        unique=True,
+        choices=CHOICES_USUARIO_DEPARTAMENTO
+        )   
     
     senha = models.CharField(
         max_length=8,
