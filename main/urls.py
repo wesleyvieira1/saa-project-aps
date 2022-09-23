@@ -1,7 +1,7 @@
-from turtle import home
 from django.urls import path
 from .views import homeView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path('', homeView.as_view(), name='home')
+    path('', login_required(homeView.as_view()), name='home')
 ]
