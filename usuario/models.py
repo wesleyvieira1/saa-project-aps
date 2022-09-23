@@ -3,18 +3,82 @@ import email
 from pyexpat import model
 from django.db import models
 
+from base.validators import validateCpf, validateEmail, validateEndereco, validateNome, validateRg, validateSenha
+
+
 class Usuario(models.Model):
-    nome = models.CharField(max_length=256)
+    
+    CHOICES_USUARIO_DEPARTAMENTO = (
+        ('1','Coodernação'),
+        ('2', 'Professor'),
+        ('3', 'Aluno')
+    )
+
+    CHOICES_USUARIO_TURNO = (
+        ('1','Manhã'),
+        ('2','Tarde'),
+        ('3','Manhã e Tarde')
+    )
+    nome = models.CharField(
+        max_length=100,
+        blank=True,
+		null=True,
+		unique=True,
+		validators=[validateNome]
+        )
     #foto = models.ImageField()
-    email = models.EmailField(max_length=100)
-    cpf = models.CharField(max_length=11)
-    rg = models.CharField(max_length=7)
-    endereco = models.CharField(max_length=100)
+    email = models.EmailField(
+        max_length=100,
+        blank=True,
+		null=True,
+		unique=True,
+		validators=[validateEmail]
+        )
+
+    cpf = models.CharField(
+        max_length=11,
+        blank=True,
+		null=True,
+		unique=True,
+		validators=[validateCpf]
+        )
+    rg = models.CharField(
+        max_length=7,
+        blank=True,
+		null=True,
+		unique=True,
+		validators=[validateRg]
+        )
+    endereco = models.CharField(
+        max_length=100,
+        blank=True,
+		null=True,
+		unique=True,
+		validators=[validateEndereco]
+        )
     data_nascimento = models.DateField()
     data_entrada = models.DateField()
-    turno = models.CharField(max_length=10)
-    #departamento = models.CharField(max_length=20)
-    senha = models.CharField(max_length=8)
+    turno = models.CharField(
+        max_length=10,
+        blank=True,
+		null=True,
+		unique=True,
+		choices=CHOICES_USUARIO_TURNO
+        )
+    #departamento = models.CharField(
+    # max_length=20,
+    # blank=True,
+    # null=True,
+    # unique=True,
+    # choices=CHOICES_USUARIO_DEPARTAMENTO
+    # )
+    
+    senha = models.CharField(
+        max_length=8,
+        blank=True,
+		null=True,
+		unique=True,
+		validators=[validateSenha] )
     #historico = models.ImageField()
     #ativo = models.BooleanField()
     def __str__(self) -> str:
