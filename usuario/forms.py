@@ -15,5 +15,6 @@ class usuarioForm (forms.ModelForm):
                 'data_nascimento',
                 'data_entrada',
                 'turno',
+                'departamento',
                 'senha']
 
