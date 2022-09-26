@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Usuario
-from .forms import usuarioForm
+from .models import Usuario, UsuarioSys
+from .forms import usuarioForm, usuarioForms
 
 #Listagem dos Usuários
 class listagemUsuariosView(ListView):
@@ -25,3 +25,4 @@ class usuarioUpdateView(UpdateView):
 class usuarioDeleteView(DeleteView):
     model = Usuario
     success_url = '/usuarios/'
+
