@@ -26,7 +26,6 @@ class Usuario(models.Model):
         max_length=100,
         blank=True,
 		null=True,
-		unique=True,
 		validators=[validateNome]
         )
     #foto = models.ImageField()
@@ -55,7 +54,6 @@ class Usuario(models.Model):
         max_length=100,
         blank=True,
 		null=True,
-		unique=True,
 		validators=[validateEndereco]
         )
     data_nascimento = models.DateField()
@@ -64,7 +62,6 @@ class Usuario(models.Model):
         max_length=10,
         blank=True,
 		null=True,
-		unique=True,
 		choices=CHOICES_USUARIO_TURNO
         )
     departamento = models.CharField(
@@ -72,7 +69,6 @@ class Usuario(models.Model):
         max_length=20,
         blank=True,
         null=True,
-        unique=True,
         choices=CHOICES_USUARIO_DEPARTAMENTO
         )   
     

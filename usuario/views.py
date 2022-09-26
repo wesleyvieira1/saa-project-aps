@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from urllib import request
+from django.contrib import messages
+from multiprocessing import context
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .models import Usuario, UsuarioSys
-from .forms import usuarioForm, usuarioForms
+from .models import Usuario
+from usuario.forms import usuarioForm, usuarioSysForm
+from django.contrib.auth import login
 
 #Listagem dos Usuários
 class listagemUsuariosView(ListView):
@@ -26,3 +30,16 @@ class usuarioDeleteView(DeleteView):
     model = Usuario
     success_url = '/usuarios/'
 
+
+def register(request):
+    if request.method=="POST":
+        form = usuarioSysForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Login Registrado com Sucesso')
+            return redirect('home')
+        messages.error(request, 'Falha no registro do login')
+    form = usuarioSysForm()
+    context = {'form': form}
+    return render(request, template_name='usuario/register.html', context=context)
