@@ -1,4 +1,5 @@
 from colorsys import rgb_to_hls
+from distutils.command.upload import upload
 import email
 from email.policy import default
 from pyexpat import model
@@ -8,6 +9,8 @@ from django.contrib.auth.models import User
 
 from base.validators import validateCpf, validateEmail, validateEndereco, validateNome, validateRg, validateSenha
 
+def usuario_file_name(instance, filename):
+    return '/'.join(['usuario', instance.user.username, filename])
 
 class Usuario(models.Model):
     
@@ -63,8 +66,8 @@ class Usuario(models.Model):
         )
     data_nascimento = models.DateField()
     data_entrada = models.DateField()
-    foto = models.ImageField(blank=True)
-    historico = models.FileField(blank=True)
+    foto = models.ImageField(blank=True, upload_to=usuario_file_name)
+    historico = models.FileField(blank=True, upload_to=usuario_file_name)
     turno = models.CharField(
         max_length=10,
         blank=True,
