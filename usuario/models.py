@@ -7,7 +7,7 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 
-from base.validators import validateCpf, validateEmail, validateEndereco, validateNome, validateRg, validateSenha
+from base.validators import validateContato, validateCpf, validateEmail, validateEndereco, validateNome, validateRg, validateSenha
 
 def usuario_file_name(instance, filename):
     return '/'.join(['usuario', instance.user.username, filename])
@@ -42,7 +42,8 @@ class Usuario(models.Model):
     contato = models.CharField(
         max_length=11,
         null=True,
-        blank=False)
+        blank=False,
+        validators=[validateContato])
 
     cpf = models.CharField(
         max_length=11,

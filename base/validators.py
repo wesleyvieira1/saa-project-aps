@@ -43,12 +43,6 @@ def validateEndereco(value):
     else:
         return value
 
-def validateContato(value):
-    for i in value:
-        if len(i[2:])<9:
-            raise('Contato deve possuir 9 caracteres sem o DDD')
-        else:
-            return value
 
 def validateEmail(value):
     if "@" not in value:
@@ -63,5 +57,6 @@ def validateSenha(value):
         raise ValidationError('A senha deve possuir 8 caracteres')
 
 def validateContato(value):
-    if len(value[2:])<9:
+    cont = len(value[2:])
+    if cont<9:
         raise ValidationError('O contato deve ter 9 digitos sem contar com o DDD')

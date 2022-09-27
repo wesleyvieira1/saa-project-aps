@@ -21,6 +21,7 @@
                 <th>Departamento</th>
                 <th>Editar</th>
                 <th>Excluir</th>
+                <th>Registrar</th>
                 
             </tr>
         </thead>
@@ -47,6 +48,9 @@
                 </td>
                 <td>
                     <a href="{%url 'usuario.excluir' usuario.pk %}">Excluir</a>
+                </td>
+                <td>
+                    <a href="{%url 'usuario.register'%}">Registrar Login</a>
                 </td>
             </tr>
             {% endfor %}
