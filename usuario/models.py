@@ -20,11 +20,11 @@ class Usuario(models.Model):
     CHOICES_USUARIO_TURNO = (
         ('1','Manhã'),
         ('2','Tarde'),
-        ('3','Manhã e Tarde')
+        ('3','Integral')
     )
     nome = models.CharField(
         max_length=100,
-        blank=True,
+        blank=False,
 		null=True,
 		validators=[validateNome]
         )
@@ -32,32 +32,39 @@ class Usuario(models.Model):
     email = models.CharField(
         max_length=100,
         null=True,
+        blank=False,
         unique=True,
 		validators=[validateEmail]
         )
+    contato = models.CharField(
+        max_length=11,
+        null=True,
+        blank=False)
 
     cpf = models.CharField(
         max_length=11,
-        blank=True,
+        blank=False,
 		null=True,
 		unique=True,
 		validators=[validateCpf]
         )
     rg = models.CharField(
         max_length=7,
-        blank=True,
+        blank=False,
 		null=True,
 		unique=True,
 		validators=[validateRg]
         )
     endereco = models.CharField(
         max_length=100,
-        blank=True,
+        blank=False,
 		null=True,
 		validators=[validateEndereco]
         )
     data_nascimento = models.DateField()
     data_entrada = models.DateField()
+    foto = models.ImageField(blank=True)
+    historico = models.FileField(blank=True)
     turno = models.CharField(
         max_length=10,
         blank=True,
@@ -71,14 +78,8 @@ class Usuario(models.Model):
         null=True,
         choices=CHOICES_USUARIO_DEPARTAMENTO
         )   
-    
-    senha = models.CharField(
-        max_length=8,
-        blank=True,
-		null=True,
-		unique=True,
-		validators=[validateSenha] )
     #historico = models.ImageField()
     #ativo = models.BooleanField()
     def __str__(self) -> str:
         return self.nome
+

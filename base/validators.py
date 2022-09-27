@@ -61,3 +61,7 @@ def validateSenha(value):
         raise ValidationError('A senha deve possuir 8 caracteres')
     elif len(value)>8:
         raise ValidationError('A senha deve possuir 8 caracteres')
+
+def validateContato(value):
+    if len(value[2:])<9:
+        raise ValidationError('O contato deve ter 9 digitos sem contar com o DDD')
