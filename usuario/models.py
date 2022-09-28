@@ -7,7 +7,7 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 
-from base.validators import validateContato, validateCpf, validateEmail, validateEndereco, validateNome, validateRg, validateSenha
+from base.validators import validateContato, validateCpf, validateDigits, validateEmail, validateEndereco, validateFoto, validateHistorico, validateNoDigits, validateNome, validateRg, validateSenha
 
 def usuario_file_name(instance, filename):
     return '/'.join(['usuario', instance.user.username, filename])
@@ -29,7 +29,7 @@ class Usuario(models.Model):
         max_length=100,
         blank=False,
 		null=True,
-		validators=[validateNome]
+		validators=[validateNome,validateNoDigits]
         )
     #foto = models.ImageField()
     email = models.CharField(
@@ -67,8 +67,14 @@ class Usuario(models.Model):
         )
     data_nascimento = models.DateField()
     data_entrada = models.DateField()
-    foto = models.ImageField(blank=True, upload_to=usuario_file_name)
-    historico = models.FileField(blank=True, upload_to=usuario_file_name)
+    foto = models.ImageField(
+        blank=True, 
+        upload_to=usuario_file_name, 
+        validators=[validateFoto])
+    historico = models.FileField(
+        blank=True, 
+        upload_to=usuario_file_name, 
+        validators=[validateHistorico])
     turno = models.CharField(
         max_length=10,
         blank=True,

@@ -60,3 +60,13 @@ def validateContato(value):
     cont = len(value[2:])
     if cont<9:
         raise ValidationError('O contato deve ter 9 digitos sem contar com o DDD')
+
+def validateHistorico(value):
+    formato = value[-4:]
+    if formato==".jpg" or formato==".jpeg" or formato==".png":
+        raise ValidationError('O formato do arquivo é inválido')
+
+def validateFoto(value):
+    formato = value[-4:]
+    if formato==".svg":
+        raise ValidationError('O formato do arquivo é inválido')
