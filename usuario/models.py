@@ -6,7 +6,7 @@ from pyexpat import model
 from django.db import models
 from django import forms
 from django.contrib.auth.models import User
-
+from django.core.validators import FileExtensionValidator
 from base.validators import validateContato, validateCpf, validateDigits, validateEmail, validateEndereco, validateFoto, validateHistorico, validateNoDigits, validateNome, validateRg, validateSenha
 
 def usuario_file_name(instance, filename):
@@ -67,14 +67,17 @@ class Usuario(models.Model):
         )
     data_nascimento = models.DateField()
     data_entrada = models.DateField()
+
     foto = models.ImageField(
         blank=True, 
-        upload_to=usuario_file_name, 
-        validators=[validateFoto])
+        upload_to='documents/%d/%m/%Y', 
+        validators=[FileExtensionValidator(['png','jpg','jpeg'])])
+
     historico = models.FileField(
         blank=True, 
-        upload_to=usuario_file_name, 
-        validators=[validateHistorico])
+        upload_to='documents/%d/%m/%Y', 
+        validators=[FileExtensionValidator(['pdf'])])
+
     turno = models.CharField(
         max_length=10,
         blank=True,
@@ -92,4 +95,3 @@ class Usuario(models.Model):
     #ativo = models.BooleanField()
     def __str__(self) -> str:
         return self.nome
-
