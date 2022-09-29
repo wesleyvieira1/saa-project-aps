@@ -1,28 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAA</title>
-</head>
-<body>
-    <a href="{%url 'home'%}">Home</a>
-    <a href="{%url 'usuario.index'%}">Usuários</a>
-    {% if messages %}
+{% include 'main/base.html' %}
+{% load bootstrap %}
+{% if messages %}
     <ul class="messages">
         {% for message in messages %}
         <li class="{{message.tags}}">{{message}}</li>
-        {% endfor %}
+{% endfor %}
 
-    </ul>
-    {% endif %}
+project/urls.py    </ul>
+{% endif %}
+
+<div style='margin: 0 auto; padding:30px;'>
     <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
+        <div class="col-lg-6 col-md-12 g-5" style='display:flex; flex-direction: column; justify-content: center; margin: 0 auto;'>
+            {% csrf_token %}
+        {{form|bootstrap}}
         <button type="submit" value="submit">Salvar Usuario</button>
-    </form>
+        </div>
+    </form>    
+</div>
 
-</body>
-</html>
+
 
