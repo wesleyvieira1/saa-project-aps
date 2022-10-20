@@ -5,7 +5,9 @@ from email.policy import default
 from pyexpat import model
 from django.db import models
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+from django.forms import PasswordInput
+from django.core.validators import RegexValidator
 
 from base.validators import validateContato, validateCpf, validateDigits, validateEmail, validateEndereco, validateFoto, validateHistorico, validateNoDigits, validateNome, validateRg, validateSenha
 
@@ -87,7 +89,7 @@ class Usuario(models.Model):
         blank=True,
         null=True,
         choices=CHOICES_USUARIO_DEPARTAMENTO
-        )   
+        )
     #historico = models.ImageField()
     #ativo = models.BooleanField()
     def __str__(self) -> str:
