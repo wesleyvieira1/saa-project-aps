@@ -8,5 +8,5 @@ urlpatterns = [
     path('novo/',login_required(usuarioCreateView.as_view()), name='usuario.novo'),
     path('editar/<int:pk>',login_required(usuarioUpdateView.as_view()), name='usuario.editar'),
     path('excluir/<int:pk>',login_required(usuarioDeleteView.as_view()), name='usuario.excluir'),
-    path('novo/register', login_required(register), name='usuario.register')
+    path('novo/register', login_required(register), name='usuario.register'),
 ]
