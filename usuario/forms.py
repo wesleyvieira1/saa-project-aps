@@ -26,7 +26,7 @@ class usuarioForm (forms.ModelForm):
 
 
 class usuarioSysForm(UserCreationForm):
-    username = forms.ChoiceField(choices=[('0','--Selecione o CPF--')]+[(Usuario.cpf, Usuario.cpf) for Usuario in Usuario.objects.all()])
+    #username = forms.ChoiceField(choices=[('0','--Selecione o CPF--')]+[(Usuario.cpf, Usuario.cpf) for Usuario in Usuario.objects.all()])
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)  
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)  
     class Meta:
