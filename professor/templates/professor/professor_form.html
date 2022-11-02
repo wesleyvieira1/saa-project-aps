@@ -1,0 +1,21 @@
+{% include 'main/base.html' %}
+{% load bootstrap %}
+{% load crispy_forms_field%}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{message.tags}}">{{message}}</li>
+{% endfor %}
+
+project/urls.py    </ul>
+{% endif %}
+
+<div style='margin: 0 auto; padding:30px;'>
+    <form method="POST">
+        <div class="col-lg-6 col-md-12 g-5" style='display:flex; flex-direction: column; justify-content: center; margin: 0 auto;'>
+            {% csrf_token %}
+        {{form| bootstrap}}
+        <button type="submit" value="submit">Salvar Professor</button>
+        </div>
+    </form>    
+</div>

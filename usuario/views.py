@@ -14,6 +14,10 @@ class listagemUsuariosView(ListView):
     model = Usuario
     queryset = Usuario.objects.all().order_by('nome')
 
+class listagemProfessorView(ListView):
+    model = Usuario
+    queryset = Usuario.objects.filter(departamento=2)
+
 #Cadastro dos Usuários
 class usuarioCreateView(SuccessMessageMixin,CreateView):
     model = Usuario
